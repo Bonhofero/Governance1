@@ -50,7 +50,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const logout = () => {
         setUser(null);
         sessionStorage.removeItem("ims_user");
-        router.push("/");
+        // Force a hard reload to instantly clear the dashboard layout from memory
+        window.location.href = "/Governance1/";
     };
 
     return (
