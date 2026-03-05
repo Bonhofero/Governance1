@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/auth-context";
 import { USERS } from "@/lib/users";
@@ -10,7 +10,14 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const router = useRouter();
-    const { login } = useAuth();
+    const { login, user, isMounted } = useAuth();
+
+    // Auto-redirect to dashboard if already logged in
+    useEffect(() => {
+        if (isMounted && user) {
+            router.push("/dashboard");
+        }
+    }, [isMounted, user, router]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -22,17 +29,19 @@ export default function LoginPage() {
             email = email + "@eskilstuna.se";
         }
 
-        const user = USERS.find(
+        const foundUser = USERS.find(
             (u) => u.email === email && u.password === password
         );
 
-        if (user) {
-            login(user);
-            router.push("/dashboard");
+        if (foundUser) {
+            login(foundUser);
+            // The router.push is now handled by the useEffect above
         } else {
             setError("Invalid email or password. Please try again.");
         }
     };
+
+    if (!isMounted) return null; // Prevent hydration mismatch
 
     return (
         <div className="login-container">

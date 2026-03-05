@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 
 interface AuthContextType {
     user: User | null;
+    isMounted: boolean;
     login: (userData: User) => void;
     logout: () => void;
 }
@@ -25,10 +26,12 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
+    const [isMounted, setIsMounted] = useState(false);
     const router = useRouter();
 
     // Load user from sessionStorage on mount (for simple persistence)
     useEffect(() => {
+        setIsMounted(true);
         const storedUser = sessionStorage.getItem("ims_user");
         if (storedUser) {
             try {
@@ -51,7 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, isMounted, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
