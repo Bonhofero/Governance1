@@ -1,4 +1,5 @@
-export const USERS = [
+// Mock user store — in production, roles come from the database after IT admin onboarding
+export const users = [
     {
         id: 1,
         name: "Elena Andersson",
