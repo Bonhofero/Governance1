@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/auth-context";
+import { USERS } from "@/lib/users";
 
 export default function LoginPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const router = useRouter();
+    const { login } = useAuth();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -19,12 +22,15 @@ export default function LoginPage() {
             email = email + "@eskilstuna.se";
         }
 
-        // Hardcoded auth logic from original Vite project
-        if (email === "elena.andersson@eskilstuna.se" && password === "demo1234") {
+        const user = USERS.find(
+            (u) => u.email === email && u.password === password
+        );
+
+        if (user) {
+            login(user);
             router.push("/dashboard");
         } else {
-            // In this demo, only Elena (CDO) has a dashboard.
-            setError("Invalid email or password. Please try again with elena.andersson / demo1234.");
+            setError("Invalid email or password. Please try again.");
         }
     };
 
@@ -92,9 +98,11 @@ export default function LoginPage() {
                         color: "var(--gray-600)",
                     }}
                 >
-                    <strong>Demo account (password: demo1234)</strong>
+                    <strong>Demo accounts (password: demo1234)</strong>
                     <div style={{ marginTop: "0.5rem", display: "flex", flexDirection: "column", gap: "0.25rem" }}>
                         <span>elena.andersson → CDO Dashboard</span>
+                        <span>arthur.bergstrom → Operations Dashboard</span>
+                        <span>lars.lindqvist → Finance Dashboard</span>
                     </div>
                 </div>
             </div>

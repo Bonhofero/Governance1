@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: "Transformation intelligence for strategic leaders",
 };
 
+import { AuthProvider } from "@/context/auth-context";
+
 export default function DashboardLayout({
   children,
 }: Readonly<{
@@ -17,17 +19,19 @@ export default function DashboardLayout({
 }>) {
   return (
     <div className="bg-[#0F172A] min-h-screen text-slate-50 font-sans antialiased dark">
-      <TooltipProvider>
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <div className="flex-1 ml-[240px]">
-            <Header title="Overview" />
-            <main className="mt-16 p-8">
-              {children}
-            </main>
+      <AuthProvider>
+        <TooltipProvider>
+          <div className="flex min-h-screen">
+            <Sidebar />
+            <div className="flex-1 ml-[240px]">
+              <Header title="Overview" />
+              <main className="mt-16 p-8">
+                {children}
+              </main>
+            </div>
           </div>
-        </div>
-      </TooltipProvider>
+        </TooltipProvider>
+      </AuthProvider>
     </div>
   );
 }
