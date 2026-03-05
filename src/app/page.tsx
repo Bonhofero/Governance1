@@ -1,50 +1,103 @@
-import { AmbidexterityMeter } from "@/components/dashboard/ambidexterity-meter";
-import { KPICard } from "@/components/dashboard/kpi-card";
-import { ShadowInnovationDetector } from "@/components/dashboard/shadow-innovation";
-import { InitiativeKanban } from "@/components/dashboard/initiative-kanban";
-import { InfrastructureQuadrant } from "@/components/dashboard/infrastructure-quadrant";
-import { mockData } from "@/lib/mock-data";
+"use client";
 
-export default function Home() {
-  return (
-    <div className="space-y-8 animate-in fade-in duration-700">
-      {/* Section A — Ambidexterity Meter */}
-      <AmbidexterityMeter
-        efficiency={mockData.ambidexterity.efficiency_pct}
-        innovation={mockData.ambidexterity.innovation_pct}
-        internal={mockData.ambidexterity.internal_pct}
-        external={mockData.ambidexterity.external_pct}
-        targetEfficiency={mockData.ambidexterity.target_efficiency_pct}
-      />
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-      {/* Section B — Six Ambidexterity KPI Cards */}
-      <div>
-        <h3 className="text-sm font-bold text-[#64748B] uppercase tracking-widest mb-4">Strategic Transformation KPIs</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mockData.kpis.map((kpi) => (
-            <KPICard key={kpi.id} kpi={kpi} />
-          ))}
+export default function LoginPage() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const router = useRouter();
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+
+        // Auto-append domain if not present
+        let email = username.trim();
+        if (!email.includes("@")) {
+            email = email + "@eskilstuna.se";
+        }
+
+        // Hardcoded auth logic from original Vite project
+        if (email === "elena.andersson@eskilstuna.se" && password === "demo1234") {
+            router.push("/dashboard");
+        } else {
+            // In this demo, only Elena (CDO) has a dashboard.
+            setError("Invalid email or password. Please try again with elena.andersson / demo1234.");
+        }
+    };
+
+    return (
+        <div className="login-container">
+            <div className="login-box">
+                <div className="logo">
+                    <h1>IMS</h1>
+                    <p>Your digital landscape, finally visible.</p>
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>Username</label>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0" }}>
+                            <input
+                                type="text"
+                                placeholder="first.lastname"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                style={{ borderRadius: "6px 0 0 6px", flex: 1 }}
+                                required
+                            />
+                            <span
+                                style={{
+                                    background: "var(--gray-100)",
+                                    border: "1px solid var(--gray-300)",
+                                    borderLeft: "none",
+                                    padding: "0.75rem 0.75rem",
+                                    borderRadius: "0 6px 6px 0",
+                                    fontSize: "0.85rem",
+                                    color: "var(--gray-600)",
+                                    whiteSpace: "nowrap",
+                                }}
+                            >
+                                @eskilstuna.se
+                            </span>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    {error && (
+                        <p style={{ color: "var(--red)", fontSize: "0.85rem", marginBottom: "1rem" }}>
+                            {error}
+                        </p>
+                    )}
+                    <button type="submit" className="btn-primary">
+                        Log in
+                    </button>
+                </form>
+                <div
+                    style={{
+                        marginTop: "2rem",
+                        padding: "1rem",
+                        background: "var(--gray-50)",
+                        borderRadius: "8px",
+                        fontSize: "0.8rem",
+                        color: "var(--gray-600)",
+                    }}
+                >
+                    <strong>Demo account (password: demo1234)</strong>
+                    <div style={{ marginTop: "0.5rem", display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                        <span>elena.andersson → CDO Dashboard</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      {/* Grid for C and E */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Section C — Shadow Innovation Detector */}
-        <ShadowInnovationDetector
-          shadowPct={mockData.shadow_innovation.shadow_pct}
-          anomalies={mockData.shadow_innovation.anomalies}
-        />
-
-        {/* Section E — Infrastructure Renewal Status */}
-        <InfrastructureQuadrant systems={mockData.infrastructure} />
-      </div>
-
-      {/* Section D — Initiative Pipeline */}
-      <InitiativeKanban initiatives={mockData.initiatives} />
-
-      <div className="pt-8 text-center text-[10px] text-[#475569]">
-        Designed for Eskilstuna kommun · IMS Governance Framework 2026
-      </div>
-    </div>
-  );
+    );
 }

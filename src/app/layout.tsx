@@ -1,37 +1,24 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/layout/sidebar";
-import { Header } from "@/components/layout/header";
-import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "IMS – CDO Dashboard",
-  description: "Transformation intelligence for strategic leaders",
+    title: "IMS Dashboard",
+    description: "Your digital landscape, finally visible.",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} bg-[#0F172A]`}>
-        <TooltipProvider>
-          <div className="flex min-h-screen">
-            <Sidebar />
-            <div className="flex-1 ml-[240px]">
-              <Header title="Overview" />
-              <main className="mt-16 p-8">
+    return (
+        <html lang="en" className="dark">
+            <body className={`${inter.className} bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 antialiased`}>
                 {children}
-              </main>
-            </div>
-          </div>
-        </TooltipProvider>
-      </body>
-    </html>
-  );
+            </body>
+        </html>
+    );
 }
