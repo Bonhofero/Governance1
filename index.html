@@ -69,6 +69,7 @@
                         <option>Stockholm Stad</option>
                     </select><input type="text" class="search-bar" placeholder="Search systems, initiatives..."></div>
                 <div class="top-bar-right">
+                    <button class="btn-sweep" id="startSweepBtn">🚀 Start Sweep</button>
                     <div class="notification-bell">🔔 <span class="notification-badge">3</span></div>
                     <div class="user-profile">
                         <div class="user-avatar" id="userAvatar">AL</div><span class="role-badge"
@@ -146,7 +147,72 @@
                         </div>
                     </div>
                 </section>
-                <!-- Additional sections omitted for brevity - the complete code continues with all dashboard pages -->
+                <!-- Digital Landscape -->
+                <section class="page-section" id="landscapePage">
+                    <div class="page-header">
+                        <h1>Digital Landscape</h1>
+                        <p>A comprehensive view of your municipality's digital ecosystem.</p>
+                    </div>
+                    <div class="widget-grid" style="grid-template-columns: 1fr;">
+                        <div class="widget">
+                            <h3>Infrastructure Overview</h3>
+                            <p>Understand the interdependencies between systems and departments.</p>
+                            <div
+                                style="height: 300px; background: var(--gray-50); border-radius: 8px; margin-top: 1rem; display: flex; align-items: center; justify-content: center; border: 2px dashed var(--gray-300);">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🗺️</div>
+                                    <p style="color: var(--gray-500);">Interactive System Map Coming Soon</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-grid">
+                        <div class="widget">
+                            <h3>Critical Systems</h3>
+                            <p>Current status of backbone infrastructure.</p>
+                            <div style="margin-top: 1rem;">
+                                <div
+                                    style="display: flex; justify-content: space-between; padding: 0.75rem; background: var(--gray-50); border-radius: 6px; margin-bottom: 0.5rem;">
+                                    <span>Core Network</span>
+                                    <span style="color: #10b981; font-weight: 600;">Operational</span>
+                                </div>
+                                <div
+                                    style="display: flex; justify-content: space-between; padding: 0.75rem; background: var(--gray-50); border-radius: 6px; margin-bottom: 0.5rem;">
+                                    <span>Cloud Gateway</span>
+                                    <span style="color: #10b981; font-weight: 600;">Operational</span>
+                                </div>
+                                <div
+                                    style="display: flex; justify-content: space-between; padding: 0.75rem; background: var(--gray-50); border-radius: 6px;">
+                                    <span>Backup Services</span>
+                                    <span style="color: #f59e0b; font-weight: 600;">Maintenance</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <h3>Key Metrics</h3>
+                            <p>Infrastructure performance trends.</p>
+                            <div
+                                style="height: 150px; display: flex; align-items: flex-end; gap: 10px; padding: 10px; background: var(--gray-50); border-radius: 8px; margin-top: 1rem;">
+                                <div
+                                    style="flex: 1; background: var(--primary); height: 60%; border-radius: 4px 4px 0 0;">
+                                </div>
+                                <div
+                                    style="flex: 1; background: var(--primary); height: 80%; border-radius: 4px 4px 0 0;">
+                                </div>
+                                <div
+                                    style="flex: 1; background: var(--primary); height: 40%; border-radius: 4px 4px 0 0;">
+                                </div>
+                                <div
+                                    style="flex: 1; background: var(--primary); height: 90%; border-radius: 4px 4px 0 0;">
+                                </div>
+                                <div
+                                    style="flex: 1; background: var(--primary); height: 75%; border-radius: 4px 4px 0 0;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Other sections will be added here -->
             </div>
         </main>
     </div>
