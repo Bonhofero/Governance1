@@ -1,2 +1,156 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>IMS - Infrastructure Management Solution</title><link rel="stylesheet" href="css/style.css"></head><body><!-- Login Page --><div class="login-container" id="loginPage"><div class="login-box"><div class="logo"><h1>IMS</h1><p>Your digital landscape,
-finally visible.</p></div><form id="loginForm"><div class="form-group"><label>Email</label><input type="email" placeholder="you@municipality.se" required></div><div class="form-group"><label>Password</label><input type="password" placeholder="••••••••" required></div><div class="form-group"><label>Role</label><select id="roleSelect" required><option value="">Select your role...</option><option value="operations">Operations Lead</option><option value="finance">Finance Director</option><option value="transformation">Transformation Officer</option></select></div><button type="submit" class="btn-primary">Login to IMS</button></form><div class="persona-cards"><div class="persona-card"><h4>Arthur - Operations Lead</h4><p>Risk management & system stability focus</p></div><div class="persona-card"><h4>Elena - Transformation Officer</h4><p>Innovation & digital development focus</p></div><div class="persona-card"><h4>Lars - Finance Director</h4><p>Budget optimization & ROI focus</p></div></div></div></div><!-- Dashboard --><div class="dashboard" id="dashboard"><!-- Sidebar --><aside class="sidebar"><div class="sidebar-logo"><h2>IMS</h2></div><ul class="nav-menu"><li class="nav-item active" data-page="home"><span class="icon">🏠</span><span>Dashboard</span></li><li class="nav-item" data-page="landscape"><span class="icon">🗺️</span><span>Digital Landscape</span></li><li class="nav-item" data-page="risk"><span class="icon">⚠️</span><span>Risk Heatmap</span></li><li class="nav-item" data-page="financial"><span class="icon">💰</span><span>Financial Overview</span></li><li class="nav-item" data-page="portfolio"><span class="icon">📋</span><span>Digital Portfolio</span></li><li class="nav-item" data-page="compliance"><span class="icon">🔒</span><span>Compliance</span></li><li class="nav-item" data-page="governance"><span class="icon">🏛️</span><span>Governance Hub</span></li><li class="nav-item" data-page="library"><span class="icon">🔗</span><span>Shared Library</span></li><li class="nav-item" data-page="value"><span class="icon">📊</span><span>Public Value</span></li></ul></aside><!-- Main Content --><main class="main-content"><!-- Top Bar --><div class="top-bar"><div class="top-bar-left"><select class="org-switcher"><option>Göteborg Stad</option><option>Malmö Stad</option><option>Stockholm Stad</option></select><input type="text" class="search-bar" placeholder="Search systems, initiatives..."></div><div class="top-bar-right"><div class="notification-bell">🔔 <span class="notification-badge">3</span></div><div class="user-profile"><div class="user-avatar">AL</div><span class="role-badge" id="userRole">Operations Lead</span></div></div></div><!-- Content Area --><div class="content-area"><!-- Home Dashboard --><section class="page-section active" id="homePage"><div class="page-header"><h1>Dashboard Overview</h1><p>Real-time insights into your digital infrastructure</p></div><div class="kpi-grid"><div class="kpi-card"><div class="kpi-label">Total Active Systems</div><div class="kpi-value">247</div><div class="kpi-trend">Across 12 departments</div></div><div class="kpi-card danger"><div class="kpi-label">Systems at Risk</div><div class="kpi-value">34</div><div class="kpi-trend up">↑ 6 from last month</div></div><div class="kpi-card warning"><div class="kpi-label">Maintenance vs Development</div><div class="kpi-value">87%</div><div class="kpi-trend">Target: 60% maintenance</div></div><div class="kpi-card success"><div class="kpi-label">Innovation Initiatives</div><div class="kpi-value">23</div><div class="kpi-trend down">↓ 3 completed this quarter</div></div></div><div class="widget-grid"><div class="widget"><div class="widget-header"><h3>Risk Heatmap Preview</h3><a class="widget-link" data-nav="risk">View Full →</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">🔴 Critical: 8 | 🟡 Monitor: 14 | 🟢 Safe: 225 </div></div><div class="widget"><div class="widget-header"><h3>Portfolio Health</h3><a class="widget-link" data-nav="portfolio">View All →</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem;"><div><strong>Quick Wins:</strong>8 initiatives</div><div><strong>Moonshots:</strong>4 initiatives</div><div><strong>Enterprise Anchors:</strong>6 initiatives</div><div><strong>Kill Zone:</strong>2 initiatives</div></div></div><div class="widget"><div class="widget-header"><h3>Recent Incidents</h3><a class="widget-link">View All →</a></div><div style="display: flex; flex-direction: column; gap: 0.75rem;"><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>CRM System</strong>- Connection timeout <div style="color: var(--gray-600); margin-top: 0.25rem;">2 hours ago</div></div><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>HR Portal</strong>- Authentication error <div style="color: var(--gray-600); margin-top: 0.25rem;">1 day ago</div></div></div></div></div></section><!-- Additional sections omitted for brevity - the complete code continues with all dashboard pages --></div></main></div><script src="js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMS - Infrastructure Management Solution</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body><!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="logo">
+                <h1>IMS</h1>
+                <p>Your digital landscape,
+                    finally visible.</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group"><label>Username</label><input type="text" id="usernameInput"
+                        placeholder="first.lastname@eskilstuna.se" required></div>
+                <div class="form-group"><label>Password</label><input type="password" id="passwordInput"
+                        placeholder="••••••••" required></div>
+                <p id="loginError" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 1rem; display: none;"></p>
+                <button type="submit" class="btn-primary">Log in</button>
+            </form>
+            <div class="persona-cards">
+                <div class="persona-card">
+                    <h4>elena.andersson</h4>
+                    <p>CDO Dashboard (demo1234)</p>
+                </div>
+                <div class="persona-card">
+                    <h4>arthur.bergstrom</h4>
+                    <p>Operations Dashboard (demo1234)</p>
+                </div>
+                <div class="persona-card">
+                    <h4>lars.lindqvist</h4>
+                    <p>Finance Dashboard (demo1234)</p>
+                </div>
+            </div>
+        </div>
+    </div><!-- Dashboard -->
+    <div class="dashboard" id="dashboard"><!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h2>IMS</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-page="home"><span class="icon">🏠</span><span>Dashboard</span></li>
+                <li class="nav-item" data-page="landscape"><span class="icon">🗺️</span><span>Digital Landscape</span>
+                </li>
+                <li class="nav-item" data-page="risk"><span class="icon">⚠️</span><span>Risk Heatmap</span></li>
+                <li class="nav-item" data-page="financial"><span class="icon">💰</span><span>Financial Overview</span>
+                </li>
+                <li class="nav-item" data-page="portfolio"><span class="icon">📋</span><span>Digital Portfolio</span>
+                </li>
+                <li class="nav-item" data-page="compliance"><span class="icon">🔒</span><span>Compliance</span></li>
+                <li class="nav-item" data-page="governance"><span class="icon">🏛️</span><span>Governance Hub</span>
+                </li>
+                <li class="nav-item" data-page="library"><span class="icon">🔗</span><span>Shared Library</span></li>
+                <li class="nav-item" data-page="value"><span class="icon">📊</span><span>Public Value</span></li>
+            </ul>
+        </aside><!-- Main Content -->
+        <main class="main-content"><!-- Top Bar -->
+            <div class="top-bar">
+                <div class="top-bar-left"><select class="org-switcher">
+                        <option>Göteborg Stad</option>
+                        <option>Malmö Stad</option>
+                        <option>Stockholm Stad</option>
+                    </select><input type="text" class="search-bar" placeholder="Search systems, initiatives..."></div>
+                <div class="top-bar-right">
+                    <div class="notification-bell">🔔 <span class="notification-badge">3</span></div>
+                    <div class="user-profile">
+                        <div class="user-avatar" id="userAvatar">AL</div><span class="role-badge"
+                            id="userRole">Operations Lead</span><span class="role-badge" id="logoutBtn"
+                            style="margin-left: 0.5rem; background: var(--gray-100); color: var(--gray-700); cursor: pointer; border: 1px solid var(--gray-300);">Log
+                            out</span>
+                    </div>
+                </div>
+            </div><!-- Content Area -->
+            <div class="content-area"><!-- Home Dashboard -->
+                <section class="page-section active" id="homePage">
+                    <div class="page-header">
+                        <h1>Dashboard Overview</h1>
+                        <p>Real-time insights into your digital infrastructure</p>
+                    </div>
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-label">Total Active Systems</div>
+                            <div class="kpi-value">247</div>
+                            <div class="kpi-trend">Across 12 departments</div>
+                        </div>
+                        <div class="kpi-card danger">
+                            <div class="kpi-label">Systems at Risk</div>
+                            <div class="kpi-value">34</div>
+                            <div class="kpi-trend up">↑ 6 from last month</div>
+                        </div>
+                        <div class="kpi-card warning">
+                            <div class="kpi-label">Maintenance vs Development</div>
+                            <div class="kpi-value">87%</div>
+                            <div class="kpi-trend">Target: 60% maintenance</div>
+                        </div>
+                        <div class="kpi-card success">
+                            <div class="kpi-label">Innovation Initiatives</div>
+                            <div class="kpi-value">23</div>
+                            <div class="kpi-trend down">↓ 3 completed this quarter</div>
+                        </div>
+                    </div>
+                    <div class="widget-grid">
+                        <div class="widget">
+                            <div class="widget-header">
+                                <h3>Risk Heatmap Preview</h3><a class="widget-link" data-nav="risk">View Full →</a>
+                            </div>
+                            <div
+                                style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">
+                                🔴 Critical: 8 | 🟡 Monitor: 14 | 🟢 Safe: 225 </div>
+                        </div>
+                        <div class="widget">
+                            <div class="widget-header">
+                                <h3>Portfolio Health</h3><a class="widget-link" data-nav="portfolio">View All →</a>
+                            </div>
+                            <div
+                                style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem;">
+                                <div><strong>Quick Wins:</strong>8 initiatives</div>
+                                <div><strong>Moonshots:</strong>4 initiatives</div>
+                                <div><strong>Enterprise Anchors:</strong>6 initiatives</div>
+                                <div><strong>Kill Zone:</strong>2 initiatives</div>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="widget-header">
+                                <h3>Recent Incidents</h3><a class="widget-link">View All →</a>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                <div
+                                    style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;">
+                                    <strong>CRM System</strong>- Connection timeout <div
+                                        style="color: var(--gray-600); margin-top: 0.25rem;">2 hours ago</div>
+                                </div>
+                                <div
+                                    style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;">
+                                    <strong>HR Portal</strong>- Authentication error <div
+                                        style="color: var(--gray-600); margin-top: 0.25rem;">1 day ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Additional sections omitted for brevity - the complete code continues with all dashboard pages -->
+            </div>
+        </main>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
