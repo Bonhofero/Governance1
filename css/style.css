@@ -16,6 +16,32 @@
     --yellow: #fbbf24;
 }
 
+/* Custom Utilities */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.cyber-glow {
+    box-shadow: 0 0 15px rgba(20, 184, 166, 0.3);
+}
+
+@keyframes pulse-soft {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -322,6 +348,9 @@ body {
 
 .page-header {
     margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .page-header h1 {
