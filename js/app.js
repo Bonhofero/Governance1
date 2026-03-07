@@ -11,7 +11,7 @@ const USERS = [
     {
         email: "arthur.bergstrom@eskilstuna.se",
         password: "demo1234",
-        name: "Arthur Bergström",
+        name: "Arthur Bergstr\u00f6m",
         title: "Operations Lead",
         initials: "AB",
         roleKey: "operations"
@@ -29,18 +29,18 @@ const USERS = [
 const DASHBOARD_CONTENT = {
     cdo: {
         header: `<h1>Dashboard Overview</h1><p>Real-time insights into your digital infrastructure</p>`,
-        kpis: `<div class="kpi-card"><div class="kpi-label">Total Active Systems</div><div class="kpi-value">247</div><div class="kpi-trend">Across 12 departments</div></div><div class="kpi-card danger"><div class="kpi-label">Systems at Risk</div><div class="kpi-value">34</div><div class="kpi-trend up">↑ 6 from last month</div></div><div class="kpi-card warning"><div class="kpi-label">Maintenance vs Development</div><div class="kpi-value">87%</div><div class="kpi-trend">Target: 60% maintenance</div></div><div class="kpi-card success"><div class="kpi-label">Innovation Initiatives</div><div class="kpi-value">23</div><div class="kpi-trend down">↓ 3 completed this quarter</div></div>`,
-        widgets: `<div class="widget"><div class="widget-header"><h3>Risk Heatmap Preview</h3><a class="widget-link" data-nav="risk">View Full →</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">🔴 Critical: 8 | 🟡 Monitor: 14 | 🟢 Safe: 225 </div></div><div class="widget"><div class="widget-header"><h3>Portfolio Health</h3><a class="widget-link" data-nav="portfolio">View All →</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem;"><div><strong>Quick Wins:</strong>8 initiatives</div><div><strong>Moonshots:</strong>4 initiatives</div><div><strong>Enterprise Anchors:</strong>6 initiatives</div><div><strong>Kill Zone:</strong>2 initiatives</div></div></div><div class="widget"><div class="widget-header"><h3>Recent Incidents</h3><a class="widget-link">View All →</a></div><div style="display: flex; flex-direction: column; gap: 0.75rem;"><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>CRM System</strong>- Connection timeout <div style="color: var(--gray-600); margin-top: 0.25rem;">2 hours ago</div></div><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>HR Portal</strong>- Authentication error <div style="color: var(--gray-600); margin-top: 0.25rem;">1 day ago</div></div></div></div>`
+        kpis: `<div class="kpi-card"><div class="kpi-label">Total Active Systems</div><div class="kpi-value">247</div><div class="kpi-trend">Across 12 departments</div></div><div class="kpi-card danger"><div class="kpi-label">Systems at Risk</div><div class="kpi-value">34</div><div class="kpi-trend up">\u2191 6 from last month</div></div><div class="kpi-card warning"><div class="kpi-label">Maintenance vs Development</div><div class="kpi-value">87%</div><div class="kpi-trend">Target: 60% maintenance</div></div><div class="kpi-card success"><div class="kpi-label">Innovation Initiatives</div><div class="kpi-value">23</div><div class="kpi-trend down">\u2193 3 completed this quarter</div></div>`,
+        widgets: `<div class="widget"><div class="widget-header"><h3>Risk Heatmap Preview</h3><a class="widget-link" data-nav="risk">View Full \u2192</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">\ud83d\udd34 Critical: 8 | \ud83d\udfe1 Monitor: 14 | \ud83d\udfe2 Safe: 225 </div></div><div class="widget"><div class="widget-header"><h3>Portfolio Health</h3><a class="widget-link" data-nav="portfolio">View All \u2192</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem;"><div><strong>Quick Wins:</strong>8 initiatives</div><div><strong>Moonshots:</strong>4 initiatives</div><div><strong>Enterprise Anchors:</strong>6 initiatives</div><div><strong>Kill Zone:</strong>2 initiatives</div></div></div><div class="widget"><div class="widget-header"><h3>Recent Incidents</h3><a class="widget-link">View All \u2192</a></div><div style="display: flex; flex-direction: column; gap: 0.75rem;"><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>CRM System</strong>- Connection timeout <div style="color: var(--gray-600); margin-top: 0.25rem;">2 hours ago</div></div><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>HR Portal</strong>- Authentication error <div style="color: var(--gray-600); margin-top: 0.25rem;">1 day ago</div></div></div></div>`
     },
     operations: {
         header: `<h1>Operations Overview</h1><p>System stability & incident monitoring</p>`,
-        kpis: `<div class="kpi-card danger"><div class="kpi-label">Critical Incidents</div><div class="kpi-value">2</div><div class="kpi-trend up">Attention needed</div></div><div class="kpi-card warning"><div class="kpi-label">Systems at Risk</div><div class="kpi-value">34</div><div class="kpi-trend up">↑ 6 from last month</div></div><div class="kpi-card success"><div class="kpi-label">Uptime Average</div><div class="kpi-value">99.9%</div><div class="kpi-trend">Target: 99.5%</div></div><div class="kpi-card"><div class="kpi-label">Pending Updates</div><div class="kpi-value">14</div><div class="kpi-trend">Scheduled for weekend</div></div>`,
-        widgets: `<div class="widget"><div class="widget-header"><h3>Risk Heatmap Preview</h3><a class="widget-link" data-nav="risk">View Full →</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">🔴 Critical: 8 | 🟡 Monitor: 14 | 🟢 Safe: 225 </div></div><div class="widget"><div class="widget-header"><h3>Server Load Average</h3><a class="widget-link">View Nodes →</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem;"><div><strong>Web Tier:</strong> 45% CPU</div><div><strong>DB Tier:</strong> 62% CPU</div><div><strong>Auth Services:</strong> 28% CPU</div></div></div><div class="widget"><div class="widget-header"><h3>Recent Incidents</h3><a class="widget-link">View All →</a></div><div style="display: flex; flex-direction: column; gap: 0.75rem;"><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>CRM System</strong>- Connection timeout <div style="color: var(--gray-600); margin-top: 0.25rem;">2 hours ago</div></div><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>HR Portal</strong>- Authentication error <div style="color: var(--gray-600); margin-top: 0.25rem;">1 day ago</div></div></div></div>`
+        kpis: `<div class="kpi-card danger"><div class="kpi-label">Critical Incidents</div><div class="kpi-value">2</div><div class="kpi-trend up">Attention needed</div></div><div class="kpi-card warning"><div class="kpi-label">Systems at Risk</div><div class="kpi-value">34</div><div class="kpi-trend up">\u2191 6 from last month</div></div><div class="kpi-card success"><div class="kpi-label">Uptime Average</div><div class="kpi-value">99.9%</div><div class="kpi-trend">Target: 99.5%</div></div><div class="kpi-card"><div class="kpi-label">Pending Updates</div><div class="kpi-value">14</div><div class="kpi-trend">Scheduled for weekend</div></div>`,
+        widgets: `<div class="widget"><div class="widget-header"><h3>Risk Heatmap Preview</h3><a class="widget-link" data-nav="risk">View Full \u2192</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">\ud83d\udd34 Critical: 8 | \ud83d\udfe1 Monitor: 14 | \ud83d\udfe2 Safe: 225 </div></div><div class="widget"><div class="widget-header"><h3>Server Load Average</h3><a class="widget-link">View Nodes \u2192</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem;"><div><strong>Web Tier:</strong> 45% CPU</div><div><strong>DB Tier:</strong> 62% CPU</div><div><strong>Auth Services:</strong> 28% CPU</div></div></div><div class="widget"><div class="widget-header"><h3>Recent Incidents</h3><a class="widget-link">View All \u2192</a></div><div style="display: flex; flex-direction: column; gap: 0.75rem;"><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>CRM System</strong>- Connection timeout <div style="color: var(--gray-600); margin-top: 0.25rem;">2 hours ago</div></div><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>HR Portal</strong>- Authentication error <div style="color: var(--gray-600); margin-top: 0.25rem;">1 day ago</div></div></div></div>`
     },
     finance: {
         header: `<h1>Finance Overview</h1><p>IT budget & cost optimization analysis</p>`,
-        kpis: `<div class="kpi-card warning"><div class="kpi-label">Total IT Spend (YTD)</div><div class="kpi-value">84.2M kr</div><div class="kpi-trend">7% over target</div></div><div class="kpi-card success"><div class="kpi-label">Identified Savings</div><div class="kpi-value">1.2M kr</div><div class="kpi-trend up">↑ Cloud optimization</div></div><div class="kpi-card danger"><div class="kpi-label">Shadow IT Est.</div><div class="kpi-value">4.5M kr</div><div class="kpi-trend up">↑ 15% increase</div></div><div class="kpi-card"><div class="kpi-label">New Investments</div><div class="kpi-value">12.5M kr</div><div class="kpi-trend down">Across 5 projects</div></div>`,
-        widgets: `<div class="widget"><div class="widget-header"><h3>Budget Burn Rate</h3><a class="widget-link" data-nav="financial">View Full →</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">Monthly Spend: 8.4M kr / Tracker: On Pace </div></div><div class="widget"><div class="widget-header"><h3>Top Cost Centers</h3><a class="widget-link">View All →</a></div><div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;"><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>1. Enterprise Resource Planning</strong>- 35M kr / yr <div style="color: var(--gray-600); margin-top: 0.25rem;">Licensing & Support</div></div><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>2. Cloud Infrastructure</strong>- 22M kr / yr <div style="color: var(--gray-600); margin-top: 0.25rem;">AWS/Azure Managed Services</div></div></div></div>`
+        kpis: `<div class="kpi-card warning"><div class="kpi-label">Total IT Spend (YTD)</div><div class="kpi-value">84.2M kr</div><div class="kpi-trend">7% over target</div></div><div class="kpi-card success"><div class="kpi-label">Identified Savings</div><div class="kpi-value">1.2M kr</div><div class="kpi-trend up">\u2191 Cloud optimization</div></div><div class="kpi-card danger"><div class="kpi-label">Shadow IT Est.</div><div class="kpi-value">4.5M kr</div><div class="kpi-trend up">\u2191 15% increase</div></div><div class="kpi-card"><div class="kpi-label">New Investments</div><div class="kpi-value">12.5M kr</div><div class="kpi-trend down">Across 5 projects</div></div>`,
+        widgets: `<div class="widget"><div class="widget-header"><h3>Budget Burn Rate</h3><a class="widget-link" data-nav="financial">View Full \u2192</a></div><div style="height: 200px; background: var(--gray-50); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">Monthly Spend: 8.4M kr / Tracker: On Pace </div></div><div class="widget"><div class="widget-header"><h3>Top Cost Centers</h3><a class="widget-link">View All \u2192</a></div><div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;"><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>1. Enterprise Resource Planning</strong>- 35M kr / yr <div style="color: var(--gray-600); margin-top: 0.25rem;">Licensing & Support</div></div><div style="padding: 0.75rem; background: var(--gray-50); border-radius: 6px; font-size: 0.85rem;"><strong>2. Cloud Infrastructure</strong>- 22M kr / yr <div style="color: var(--gray-600); margin-top: 0.25rem;">AWS/Azure Managed Services</div></div></div></div>`
     }
 };
 
@@ -190,25 +190,49 @@ const INFRA_DATA = {
             id: 'citizen',
             label: 'Citizen Access & Identity',
             color: '#10b981', // green-500
-            nodes: ['BankID Gateway', 'Web Portals', 'E-Services Hub', 'Open Data API', 'Citizen App Backend']
+            nodes: [
+                { label: 'BankID 4.0 API', status: 'active' },
+                { label: 'Open ID Connect', status: 'active' },
+                { label: 'Public Portal Node', status: 'active' },
+                { label: 'SAML Identity Provider', status: 'active' },
+                { label: 'Electronic Payment GW', status: 'active' }
+            ]
         },
         {
             id: 'ops',
             label: 'Municipal Operations',
             color: '#f59e0b', // amber-500
-            nodes: ['Education LMS', 'Social Services Portal', 'Urban Planning GIS', 'Waste Management IoT', 'Park & Street Control']
+            nodes: [
+                { label: 'LMS School Server', status: 'active' },
+                { label: 'GIS Spatial DB', status: 'active' },
+                { label: 'Social Care Platform', status: 'warning' },
+                { label: 'IoT Traffic Controller', status: 'active' },
+                { label: 'Street Lighting Hub', status: 'active' }
+            ]
         },
         {
             id: 'admin',
             label: 'Administrative Backbone',
             color: '#3b82f6', // blue-500
-            nodes: ['ERP System (Unit4)', 'HR Management', 'Case Management', 'Financial Ledger', 'Records Archive']
+            nodes: [
+                { label: 'Unit4 Business World', status: 'active' },
+                { label: 'Personec HR System', status: 'active' },
+                { label: 'Finance Oracle DB', status: 'critical' },
+                { label: 'Exchange Online Sync', status: 'active' },
+                { label: 'Case Routing Engine', status: 'active' }
+            ]
         },
         {
             id: 'tech',
             label: 'Technical Base',
             color: '#a855f7', // purple-500
-            nodes: ['Main Data Center', 'Fiber Backbone', 'IoT Mesh Network', 'Smart City Sensors', 'Cloud Hybrid Link']
+            nodes: [
+                { label: 'Cisco Nexus Core', status: 'active' },
+                { label: 'PureStorage FlashArray', status: 'active' },
+                { label: 'Unauthorized Bridge', status: 'critical' },
+                { label: 'LoRaWAN Gateway', status: 'active' },
+                { label: 'Cloud Hybrid Gateway', status: 'active' }
+            ]
         }
     ],
     logs: [
@@ -283,7 +307,7 @@ function renderTopology() {
     const clusterRadius = 180;
 
     // Create central "Municipality Hub"
-    const hub = createNode(centerX, centerY, 40, '#1e293b', 'SMART CITY CORE', true);
+    const hub = createNode(centerX, centerY, 40, '#1e293b', 'SMART CITY CORE', 'active', true);
     svg.appendChild(hub);
 
     INFRA_DATA.clusters.forEach((cluster, i) => {
@@ -295,16 +319,16 @@ function renderTopology() {
         svg.appendChild(createLine(centerX, centerY, cx, cy));
 
         // Draw Cluster Node
-        svg.appendChild(createNode(cx, cy, 30, cluster.color, cluster.label, true));
+        svg.appendChild(createNode(cx, cy, 30, cluster.color, cluster.label, 'active', true));
 
         // Draw sub-nodes
-        cluster.nodes.forEach((nodeLabel, j) => {
-            const subAngle = angle - 0.5 + (j / cluster.nodes.length) * 1.0;
-            const sx = cx + Math.cos(subAngle) * 70;
-            const sy = cy + Math.sin(subAngle) * 70;
+        cluster.nodes.forEach((node, j) => {
+            const subAngle = angle - 0.5 + (j / (cluster.nodes.length - 1)) * 1.0;
+            const sx = cx + Math.cos(subAngle) * 85;
+            const sy = cy + Math.sin(subAngle) * 85;
 
             svg.appendChild(createLine(cx, cy, sx, sy));
-            svg.appendChild(createNode(sx, sy, 12, cluster.color, nodeLabel));
+            svg.appendChild(createNode(sx, sy, 12, cluster.color, node.label, node.status));
         });
     });
 
@@ -336,15 +360,36 @@ function renderTopology() {
     svg.appendChild(scanLine);
 }
 
-function createNode(x, y, r, color, label, isMajor = false) {
+function createNode(x, y, r, color, label, status = 'active', isMajor = false) {
     const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
     group.setAttribute('class', 'cursor-pointer hover:filter hover:brightness-125 transition-all');
+
+    // Status ring for at-risk nodes
+    if (status !== 'active') {
+        const ring = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        ring.setAttribute('cx', x);
+        ring.setAttribute('cy', y);
+        ring.setAttribute('r', r + 4);
+        ring.setAttribute('fill', 'none');
+        ring.setAttribute('stroke', status === 'critical' ? '#ef4444' : '#f59e0b');
+        ring.setAttribute('stroke-width', '2');
+
+        const animate = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+        animate.setAttribute('attributeName', 'opacity');
+        animate.setAttribute('values', '0.2;1;0.2');
+        animate.setAttribute('dur', '1.5s');
+        animate.setAttribute('repeatCount', 'indefinite');
+        ring.appendChild(animate);
+
+        group.appendChild(ring);
+    }
 
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute('cx', x);
     circle.setAttribute('cy', y);
     circle.setAttribute('r', r);
-    circle.setAttribute('fill', color);
+    circle.setAttribute('fill', status === 'critical' ? '#ef4444' : color);
+
     if (isMajor) {
         circle.setAttribute('stroke', '#475569');
         circle.setAttribute('stroke-width', '2');
