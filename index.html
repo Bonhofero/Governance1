@@ -80,6 +80,7 @@
                 </li>
                 <li class="nav-item" data-page="library"><span class="icon">🔗</span><span>Shared Library</span></li>
                 <li class="nav-item" data-page="value"><span class="icon">📊</span><span>Public Value</span></li>
+                <li class="nav-item" data-page="data"><span class="icon">🗄️</span><span>Data Explorer</span></li>
             </ul>
         </aside><!-- Main Content -->
         <main class="main-content"><!-- Top Bar -->
@@ -354,10 +355,99 @@
                         </div>
                     </div>
                 </section>
+                <!-- Data Explorer Section -->
+                <section class="page-section" id="dataPage">
+                    <div class="page-header">
+                        <div>
+                            <h1 class="text-3xl font-bold text-slate-800">System Data Explorer</h1>
+                            <p class="text-slate-500">Audit-grade visibility into the IMS Data Layer.</p>
+                        </div>
+                    </div>
+                    <div class="kpi-grid" style="grid-template-columns: repeat(6, 1fr); margin-bottom: 20px;">
+                        <button class="btn-primary" onclick="loadDataExplorer('application_systems')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Applications</button>
+                        <button class="btn-primary" onclick="loadDataExplorer('business_services')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Services</button>
+                        <button class="btn-primary" onclick="loadDataExplorer('sourcing_setups')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Sourcing</button>
+                        <button class="btn-primary" onclick="loadDataExplorer('interfaces')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Interfaces</button>
+                        <button class="btn-primary" onclick="loadDataExplorer('integrations')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Integrations</button>
+                        <button class="btn-primary" onclick="loadDataExplorer('organization_units')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Orgs</button>
+                    </div>
+                    <div class="widget" style="overflow-x: auto; min-height: 400px; padding: 0;">
+                        <div id="dataTableLoading"
+                            style="display: none; padding: 4rem; text-align: center; color: var(--gray-500);">Loading
+                            dataset...</div>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left;">
+                            <thead id="dataTableHeader"
+                                style="border-bottom: 1px solid var(--gray-200); background: var(--gray-50);"></thead>
+                            <tbody id="dataTableBody">
+                                <tr>
+                                    <td style="padding: 4rem; text-align: center; color: var(--gray-500);">Select a
+                                        table above to view records.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
                 <!-- Other sections will be added here -->
             </div>
         </main>
     </div>
+
+    <!-- Source Modal -->
+    <div id="sourceModal"
+        style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+        <div
+            style="background: #1e293b; padding: 2rem; border-radius: 8px; width: 80%; max-width: 800px; color: white; max-height: 90vh; overflow-y: auto; border: 1px solid #334155; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
+                <div>
+                    <h2 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.25rem;">KPI Source Verification
+                    </h2>
+                    <p style="font-size: 0.85rem; color: #94A3B8;">Audit trail for KPI <span id="sourceKpiId"
+                            style="font-family: monospace; padding: 2px 6px; background: #0f172a; border-radius: 4px; border: 1px solid #3b82f6; color: #3b82f6;"></span>
+                    </p>
+                </div>
+                <button onclick="document.getElementById('sourceModal').style.display='none'"
+                    style="background: none; border: none; color: #94A3B8; font-size: 1.5rem; cursor: pointer; transition: color 0.2s;"
+                    onmouseover="this.style.color='white'" onmouseout="this.style.color='#94A3B8'">&times;</button>
+            </div>
+
+            <h3
+                style="font-size: 0.75rem; font-weight: bold; color: #3b82f6; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1rem;">&#128206;</span> Calculation Logic (SQL)</h3>
+            <div
+                style="background: #0f172a; padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem; overflow-x: auto; margin-bottom: 1.5rem; color: #e2e8f0; border: 1px solid #334155;">
+                <code id="sourceQuery">Loading query...</code>
+            </div>
+
+            <h3
+                style="font-size: 0.75rem; font-weight: bold; color: #3b82f6; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1rem;">&#128240;</span> Raw Data Sample / Supporting Records</h3>
+            <div
+                style="background: #0f172a; border-radius: 4px; overflow-x: auto; border: 1px solid #334155; margin-bottom: 1.5rem; max-height: 250px;">
+                <table style="width: 100%; text-align: left; font-size: 0.8rem; border-collapse: collapse;">
+                    <thead id="sourceTableHeader"
+                        style="background: #1e293b; color: #94A3B8; border-bottom: 1px solid #334155; position: sticky; top: 0;">
+                    </thead>
+                    <tbody id="sourceTableBody" style="color: white; border-top: 1px solid #334155;"></tbody>
+                </table>
+            </div>
+
+            <div style="background: #0f172a; padding: 1rem; border-radius: 4px; border-left: 4px solid #3b82f6;">
+                <h4
+                    style="font-size: 0.75rem; font-weight: bold; color: #3b82f6; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+                    CDO Transparency Note</h4>
+                <div style="font-size: 0.9rem; color: #e2e8f0; line-height: 1.6;" id="sourceExplanation">
+                    Loading explanation...
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/app.js"></script>
 </body>
 
