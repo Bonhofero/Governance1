@@ -137,6 +137,7 @@ function applyUserSession() {
         const userAvatarEl = document.getElementById('userAvatar');
         if (userRoleEl) userRoleEl.textContent = user.title;
         if (userAvatarEl) userAvatarEl.textContent = user.initials;
+        // Inject Role Content
         if (DASHBOARD_CONTENT[user.roleKey]) {
             const content = DASHBOARD_CONTENT[user.roleKey];
             const homePage = document.getElementById('homePage');
@@ -145,6 +146,25 @@ function applyUserSession() {
                 const k = homePage.querySelector('.kpi-grid'); if (k) k.innerHTML = content.kpis;
                 const w = homePage.querySelector('.widget-grid'); if (w) w.innerHTML = content.widgets;
             }
+        }
+
+        // Initialize sidebar listeners
+        const showArchBtn = document.getElementById('showArchGuidance');
+        const closeArchBtn = document.getElementById('closeArch');
+        const archSidebar = document.getElementById('archGuidance');
+
+        if (showArchBtn && archSidebar) {
+            showArchBtn.addEventListener('click', () => {
+                archSidebar.classList.remove('hidden');
+                setTimeout(() => { archSidebar.style.transform = 'translateX(0)'; }, 10);
+            });
+        }
+
+        if (closeArchBtn && archSidebar) {
+            closeArchBtn.addEventListener('click', () => {
+                archSidebar.style.transform = 'translateX(-100%)';
+                setTimeout(() => { archSidebar.classList.add('hidden'); }, 500);
+            });
         }
         const loginPage = document.getElementById('loginPage');
         const dashboard = document.getElementById('dashboard');
@@ -307,6 +327,16 @@ function renderTopology() {
 function createNode(x, y, r, color, label, status = 'active', isMajor = false) {
     const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
     g.style.cursor = 'pointer';
+    g.setAttribute('class', 'api-node-group');
+
+    // Glow for high-level APIs
+    if (isMajor) {
+        const glow = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        glow.setAttribute('cx', x); glow.setAttribute('cy', y); glow.setAttribute('r', r + 10);
+        glow.setAttribute('fill', color); glow.setAttribute('opacity', '0.1');
+        g.appendChild(glow);
+    }
+
     if (status !== 'active') {
         const ring = document.createElementNS("http://www.w3.org/2000/svg", "circle");
         ring.setAttribute('cx', x); ring.setAttribute('cy', y); ring.setAttribute('r', r + 6);
@@ -317,13 +347,19 @@ function createNode(x, y, r, color, label, status = 'active', isMajor = false) {
         anim.setAttribute('dur', '2s'); anim.setAttribute('repeatCount', 'indefinite');
         ring.appendChild(anim); g.appendChild(ring);
     }
+
     const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', r);
     c.setAttribute('fill', status === 'critical' ? '#ef4444' : color);
+    c.setAttribute('stroke', '#ffffff');
+    c.setAttribute('stroke-width', isMajor ? '2' : '1');
+    c.setAttribute('stroke-opacity', '0.3');
+
     const t = document.createElementNS("http://www.w3.org/2000/svg", "text");
     t.setAttribute('x', x); t.setAttribute('y', y + r + 18);
     t.setAttribute('text-anchor', 'middle'); t.setAttribute('fill', '#94a3b8');
-    t.setAttribute('font-size', isMajor ? '10' : '8'); t.setAttribute('font-family', 'monospace');
+    t.setAttribute('font-size', isMajor ? '10' : '9'); t.setAttribute('font-family', 'monospace');
+    t.setAttribute('font-weight', isMajor ? 'bold' : 'normal');
     t.textContent = label;
     g.appendChild(c); g.appendChild(t);
     return g;
@@ -331,14 +367,30 @@ function createNode(x, y, r, color, label, status = 'active', isMajor = false) {
 
 function createApiConnection(x1, y1, x2, y2, type) {
     const family = INFRA_DATA.api_families[type] || { color: '#334155' };
+    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
     const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
     l.setAttribute('x1', x1); l.setAttribute('y1', y1); l.setAttribute('x2', x2); l.setAttribute('y2', y2);
     l.setAttribute('stroke', family.color);
-    l.setAttribute('stroke-width', type === 'partner' ? '2' : '1.5');
-    l.setAttribute('stroke-opacity', '0.6');
-    if (type === 'partner') l.setAttribute('stroke-dasharray', '4,2');
-    if (type === 'public') l.setAttribute('stroke-width', '2.5');
-    return l;
+    l.setAttribute('stroke-opacity', '0.7');
+
+    // Stronger visual styles for API types
+    if (type === 'public') {
+        l.setAttribute('stroke-width', '4');
+        // Add a secondary glow line
+        const glow = l.cloneNode();
+        glow.setAttribute('stroke-width', '8');
+        glow.setAttribute('stroke-opacity', '0.15');
+        group.appendChild(glow);
+    } else if (type === 'partner') {
+        l.setAttribute('stroke-width', '3');
+        l.setAttribute('stroke-dasharray', '8,4');
+    } else {
+        l.setAttribute('stroke-width', '2');
+    }
+
+    group.appendChild(l);
+    return group;
 }
 
 function showDetails(title, type, desc, status, id, owner, uptime) {
