@@ -4,6 +4,10 @@
  */
 
 // --- Mock User Data ---
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE = isLocalhost ? 'http://localhost:3000/api' : 'api';
+const API_EXT = isLocalhost ? '' : '.json';
+
 const USERS = [
     { email: "elena.andersson@eskilstuna.se", password: "demo1234", name: "Elena Andersson", title: "Chief Digital Officer", initials: "EA", roleKey: "cdo" },
     { email: "arthur.bergstrom@eskilstuna.se", password: "demo1234", name: "Arthur Bergstr\u00f6m", title: "Operations Lead", initials: "AB", roleKey: "operations" },
@@ -163,7 +167,7 @@ function applyUserSession() {
 
             // For CDO, attempt to fetch live KPIs
             if (user.roleKey === 'cdo') {
-                fetch('http://localhost:3000/api/dashboard')
+                fetch(`${API_BASE}/dashboard${API_EXT}`)
                     .then(res => res.json())
                     .then(data => {
                         const homePage = document.getElementById('homePage');
@@ -476,7 +480,7 @@ async function loadDataExplorer(tableName) {
     loader.style.display = 'block';
 
     try {
-        const res = await fetch(`http://localhost:3000/api/raw/${tableName}`);
+        const res = await fetch(`${API_BASE}/raw/${tableName}${API_EXT}`);
         const data = await res.json();
         loader.style.display = 'none';
 
@@ -525,7 +529,7 @@ async function openSourceModal(kpiId) {
     document.getElementById('sourceTableBody').innerHTML = '';
 
     try {
-        const res = await fetch(`http://localhost:3000/api/kpis/${kpiId}/source`);
+        const res = await fetch(`${API_BASE}/kpis/${kpiId}/source${API_EXT}`);
         const sourceData = await res.json();
 
         document.getElementById('sourceQuery').textContent = sourceData.query;
