@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Briefcase, BarChart2, ShieldAlert, Settings, Info, Database } from "lucide-react";
+import { LayoutDashboard, Briefcase, BarChart2, ShieldAlert, Settings, Info, Database, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
     { name: "Overview", href: "/", icon: LayoutDashboard },
+    { name: "Budget Tracks", href: "/budget-tracks", icon: Zap },
     { name: "Portfolio", href: "/portfolio", icon: Briefcase },
     { name: "KPIs", href: "/kpis", icon: BarChart2 },
     { name: "Infrastructure", href: "/infrastructure", icon: ShieldAlert },
