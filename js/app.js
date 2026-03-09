@@ -372,21 +372,21 @@ function createApiConnection(x1, y1, x2, y2, type) {
     const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
     l.setAttribute('x1', x1); l.setAttribute('y1', y1); l.setAttribute('x2', x2); l.setAttribute('y2', y2);
     l.setAttribute('stroke', family.color);
-    l.setAttribute('stroke-opacity', '0.7');
+    l.setAttribute('stroke-opacity', '1.0'); // Full opacity for maximum clarity
 
     // Stronger visual styles for API types
     if (type === 'public') {
-        l.setAttribute('stroke-width', '4');
+        l.setAttribute('stroke-width', '5'); // Even thicker for Public
         // Add a secondary glow line
         const glow = l.cloneNode();
-        glow.setAttribute('stroke-width', '8');
-        glow.setAttribute('stroke-opacity', '0.15');
+        glow.setAttribute('stroke-width', '10');
+        glow.setAttribute('stroke-opacity', '0.2');
         group.appendChild(glow);
     } else if (type === 'partner') {
         l.setAttribute('stroke-width', '3');
-        l.setAttribute('stroke-dasharray', '8,4');
+        l.setAttribute('stroke-dasharray', '10,5'); // Longer dashes for Partner
     } else {
-        l.setAttribute('stroke-width', '2');
+        l.setAttribute('stroke-width', '2.5'); // Slightly thicker for Internal
     }
 
     group.appendChild(l);
