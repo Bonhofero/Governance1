@@ -337,6 +337,81 @@ app.get('/api/dashboard', (req, res) => {
     }
 });
 
+// GET /api/kpis/:id/source - Transparency Endpoint
+app.get('/api/kpis/:id/source', (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        let response = {
+            id: id,
+            query: "",
+            data: [],
+            explanation: ""
+        };
+
+        switch (id) {
+            case 1: // % of budget on business development
+                response.query = `
+SELECT 
+    a.name, 
+    a.lifecycle_status, 
+    a.is_key_platform,
+    ss.annual_cost_eur
+FROM application_systems a
+JOIN sourcing_setups ss ON a.id = ss.application_id
+WHERE a.lifecycle_status = 'planned' OR a.is_key_platform = 1`;
+                response.data = db.prepare(response.query + " LIMIT 10").all();
+                response.explanation = "We sum the annual cost of all applications that are in 'planned' status or marked as 'key platforms', then divide by the total annual cost of all systems.";
+                break;
+
+            case 4: // New digital services / month
+                response.query = `
+SELECT name, created_at, lifecycle_status 
+FROM application_systems 
+WHERE created_at >= date('now', '-30 days')
+ORDER BY created_at DESC`;
+                response.data = db.prepare(response.query).all();
+                response.explanation = "Count of all application records created in the database within the last 30 days.";
+                break;
+
+            case 5: // % of existing data used for decisions
+                response.query = `
+SELECT 
+    name as interface_name, 
+    data_domain, 
+    sensitivity
+FROM interfaces
+WHERE data_domain IN ('citizen_data', 'financial_data', 'hr_data')`;
+                response.data = db.prepare(response.query + " LIMIT 10").all();
+                response.explanation = "Ratio of interfaces serving 'strategic' domains (Citizen, Finance, HR) vs. total active interfaces across all systems.";
+                break;
+
+            default:
+                response.explanation = "This KPI is currently based on strategic benchmarks rather than a single database table query.";
+                response.query = "-- No direct single-table query available --";
+        }
+
+        res.json(mapKeysDeep(response));
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// GET /api/raw/:table - Data Explorer Endpoint
+app.get('/api/raw/:table', (req, res) => {
+    const allowedTables = ['application_systems', 'organization_units', 'business_services', 'integrations', 'interfaces', 'sourcing_setups'];
+    const table = req.params.table;
+    if (!allowedTables.includes(table)) return res.status(403).json({ error: 'Access denied' });
+
+    try {
+        const data = db.prepare(`SELECT * FROM ${table} LIMIT 100`).all();
+        res.json(mapKeysDeep(data));
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`IMS Backend API Server listening on port ${PORT}`);

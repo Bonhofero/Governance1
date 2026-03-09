@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Briefcase, BarChart2, ShieldAlert, Settings, Info } from "lucide-react";
+import { LayoutDashboard, Briefcase, BarChart2, ShieldAlert, Settings, Info, Database } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -11,6 +11,7 @@ const navItems = [
     { name: "KPIs", href: "/kpis", icon: BarChart2 },
     { name: "Infrastructure", href: "/infrastructure", icon: ShieldAlert },
     { name: "Alerts", href: "/alerts", icon: Info },
+    { name: "Data Explorer", href: "/data-explorer", icon: Database },
 ];
 
 export function Sidebar() {

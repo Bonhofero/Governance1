@@ -55,8 +55,15 @@ export function KPICard({ kpi }: KPICardProps) {
                         <div className="text-2xl font-bold text-white leading-none">
                             {kpi.current_value}{kpi.unit}
                         </div>
-                        <div className="text-[10px] text-[#64748B] mt-1">
-                            Target: {kpi.target_value}{kpi.unit}
+                        <div className="text-[10px] text-[#64748B] mt-1 flex items-center gap-2">
+                            <span>Target: {kpi.target_value}{kpi.unit}</span>
+                            <span className="text-[#334155]">|</span>
+                            <a
+                                href={`/source/${kpi.id}`}
+                                className="text-[#3B82F6] hover:underline flex items-center gap-0.5 transition-colors"
+                            >
+                                See Source
+                            </a>
                         </div>
                     </div>
                     <div className="h-10 w-24">
