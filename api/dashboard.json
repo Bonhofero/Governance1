@@ -1,0 +1,719 @@
+{
+    "ambidexterity": {
+        "efficiency_pct": 92,
+        "innovation_pct": 6,
+        "internal_pct": 95,
+        "external_pct": 5,
+        "target_efficiency_pct": 60,
+        "target_innovation_pct": 40,
+        "source": "Live SQLite Sync"
+    },
+    "kpis": [
+        {
+            "id": 1,
+            "label": "% of budget on business development",
+            "current_value": 14.5,
+            "target_value": 15,
+            "trend": [
+                3.8,
+                3.9,
+                4.1,
+                4,
+                4.1,
+                14.5
+            ],
+            "unit": "%",
+            "definition": "Total IT budget allocated to new business development vs. maintenance.",
+            "why_it_matters": "Determines the organization's ability to evolve rather than just maintaining legacy systems."
+        },
+        {
+            "id": 2,
+            "label": "% of KPI1 that changes service delivery",
+            "current_value": 22,
+            "target_value": 60,
+            "trend": [
+                18,
+                19,
+                21,
+                20,
+                21,
+                22
+            ],
+            "unit": "%",
+            "definition": "Percentage of development spend that directly modifies user-facing services.",
+            "why_it_matters": "Measures the impact of development budget on the end-user experience."
+        },
+        {
+            "id": 3,
+            "label": "% of KPI2 tied to digital productivity",
+            "current_value": 45,
+            "target_value": 70,
+            "trend": [
+                40,
+                42,
+                44,
+                43,
+                44,
+                45
+            ],
+            "unit": "%",
+            "definition": "Focus on productivity-enhancing digital tools and automation.",
+            "why_it_matters": "Ensures digital initiatives result in tangible efficiency gains for staff."
+        },
+        {
+            "id": 4,
+            "label": "New digital services released / month",
+            "current_value": 50,
+            "target_value": 10,
+            "trend": [
+                1,
+                1,
+                2,
+                1,
+                2,
+                50
+            ],
+            "unit": "releases/mo",
+            "definition": "The output frequency of new digital products or major service updates.",
+            "why_it_matters": "Reflects the agility and throughput of the digital transformation pipeline."
+        },
+        {
+            "id": 5,
+            "label": "% of existing data used for decisions",
+            "current_value": 100,
+            "target_value": 40,
+            "trend": [
+                10,
+                11,
+                11,
+                12,
+                12,
+                100
+            ],
+            "unit": "%",
+            "definition": "Ratio of structured data utilized in automated decision-making processes.",
+            "why_it_matters": "Key indicator of a data-driven culture and technical readiness for AI."
+        },
+        {
+            "id": 6,
+            "label": "Years since KPIs were last updated",
+            "current_value": 8,
+            "target_value": 5,
+            "trend": [
+                8,
+                8,
+                8,
+                8,
+                8,
+                8
+            ],
+            "unit": "years",
+            "invert_scale": true,
+            "definition": "The age of the current performance measurement framework.",
+            "why_it_matters": "Legacy KPIs prevent modern goals from being measured."
+        }
+    ],
+    "shadow_innovation": {
+        "shadow_pct": 5.2,
+        "anomalies": [
+            {
+                "unit": "General Admin",
+                "type": "Low Risk",
+                "confidence": 99,
+                "detail": "No major shadow IT anomalies detected in current batch."
+            }
+        ]
+    },
+    "initiatives": [
+        {
+            "id": "1",
+            "name": "AI Case Automation",
+            "owner": "Maria Svärd",
+            "type": "moonshot",
+            "stage": "active",
+            "age_days": 124,
+            "value_score": 85,
+            "feasibility_score": 40,
+            "status": "Critical"
+        },
+        {
+            "id": "2",
+            "name": "Legacy ERP Cleanup",
+            "owner": "Johan Holm",
+            "type": "enterprise_anchor",
+            "stage": "active",
+            "age_days": 450,
+            "value_score": 95,
+            "feasibility_score": 70,
+            "status": "On Track"
+        },
+        {
+            "id": "3",
+            "name": "Citizen Portal 2.0",
+            "owner": "Sara Lind",
+            "type": "venture",
+            "stage": "evaluation",
+            "age_days": 45,
+            "value_score": 70,
+            "feasibility_score": 65,
+            "status": "On Track"
+        },
+        {
+            "id": "4",
+            "name": "Cloud Migration Phase 1",
+            "owner": "Anders Ek",
+            "type": "enterprise_anchor",
+            "stage": "scaling",
+            "age_days": 200,
+            "value_score": 90,
+            "feasibility_score": 80,
+            "status": "On Track"
+        },
+        {
+            "id": "5",
+            "name": "IOT Waste Sensors",
+            "owner": "Erik Berg",
+            "type": "quick_win",
+            "stage": "scaling",
+            "age_days": 90,
+            "value_score": 60,
+            "feasibility_score": 90,
+            "status": "On Track"
+        },
+        {
+            "id": "6",
+            "name": "HR Maestro Sunset",
+            "owner": "Lisa Bergqvist",
+            "type": "enterprise_anchor",
+            "stage": "active",
+            "age_days": 88,
+            "value_score": 80,
+            "feasibility_score": 75,
+            "status": "On Track"
+        },
+        {
+            "id": "7",
+            "name": "Flood Risk Monitor",
+            "owner": "Petra Strand",
+            "type": "quick_win",
+            "stage": "active",
+            "age_days": 36,
+            "value_score": 88,
+            "feasibility_score": 85,
+            "status": "On Track"
+        },
+        {
+            "id": "8",
+            "name": "Purchasing AI Compliance",
+            "owner": "Carl Lindqvist",
+            "type": "venture",
+            "stage": "scaling",
+            "age_days": 218,
+            "value_score": 75,
+            "feasibility_score": 70,
+            "status": "On Track"
+        }
+    ],
+    "infrastructure": [
+        {
+            "name": "Case360",
+            "criticality": 99,
+            "capital_available": 90,
+            "strategy": "encapsulate",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 241510,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Eneo AI Platform",
+            "criticality": 66,
+            "capital_available": 80,
+            "strategy": "encapsulate",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 240904,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "LearningPortal",
+            "criticality": 99,
+            "capital_available": 90,
+            "strategy": "encapsulate",
+            "owner": "Education Administration",
+            "status": "on_track",
+            "annual_cost_eur": 45815,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "ElderCare Pro",
+            "criticality": 99,
+            "capital_available": 80,
+            "strategy": "encapsulate",
+            "owner": "Social Services Administration",
+            "status": "on_track",
+            "annual_cost_eur": 93838,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Proxima Finance",
+            "criticality": 99,
+            "capital_available": 90,
+            "strategy": "encapsulate",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 440911,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "HR Maestro",
+            "criticality": 66,
+            "capital_available": 50,
+            "strategy": "migrate",
+            "owner": "IT Shared Services",
+            "status": "at_risk",
+            "annual_cost_eur": 458742,
+            "lifecycle_status": "sunset"
+        },
+        {
+            "name": "PermitFlow",
+            "criticality": 66,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 240473,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "CitizenConnect",
+            "criticality": 99,
+            "capital_available": 100,
+            "strategy": "encapsulate",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 96224,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "SchoolBus Router",
+            "criticality": 33,
+            "capital_available": 60,
+            "strategy": "accept",
+            "owner": "Education Administration",
+            "status": "on_track",
+            "annual_cost_eur": 342756,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "EnergyGrid View",
+            "criticality": 99,
+            "capital_available": 90,
+            "strategy": "encapsulate",
+            "owner": "Sundsvall Energy AB",
+            "status": "on_track",
+            "annual_cost_eur": 58359,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Archival Vault",
+            "criticality": 66,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 191915,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Library System",
+            "criticality": 66,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "Education Administration",
+            "status": "on_track",
+            "annual_cost_eur": 225741,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "PreSchool Admin",
+            "criticality": 66,
+            "capital_available": 80,
+            "strategy": "encapsulate",
+            "owner": "Education Administration",
+            "status": "on_track",
+            "annual_cost_eur": 261384,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Addiction Tracker",
+            "criticality": 66,
+            "capital_available": 50,
+            "strategy": "migrate",
+            "owner": "Social Services Administration",
+            "status": "at_risk",
+            "annual_cost_eur": 317851,
+            "lifecycle_status": "sunset"
+        },
+        {
+            "name": "CityMap GIS",
+            "criticality": 66,
+            "capital_available": 80,
+            "strategy": "encapsulate",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 411762,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Heating Billing",
+            "criticality": 99,
+            "capital_available": 90,
+            "strategy": "encapsulate",
+            "owner": "Sundsvall Energy AB",
+            "status": "on_track",
+            "annual_cost_eur": 104119,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Recruitment Hub",
+            "criticality": 33,
+            "capital_available": 70,
+            "strategy": "build",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 442982,
+            "lifecycle_status": "planned"
+        },
+        {
+            "name": "Youth Center Booking",
+            "criticality": 33,
+            "capital_available": 20,
+            "strategy": "migrate",
+            "owner": "Social Services Administration",
+            "status": "on_track",
+            "annual_cost_eur": 0,
+            "lifecycle_status": "retired"
+        },
+        {
+            "name": "Sanitation Logistics",
+            "criticality": 99,
+            "capital_available": 80,
+            "strategy": "encapsulate",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 371386,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Water Mgmt",
+            "criticality": 99,
+            "capital_available": 100,
+            "strategy": "encapsulate",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 154578,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Road Maintenance Portal",
+            "criticality": 33,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 32400,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Council Meeting Manager",
+            "criticality": 66,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 48200,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Fleet Manager",
+            "criticality": 33,
+            "capital_available": 60,
+            "strategy": "accept",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 19800,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Disability Services Register",
+            "criticality": 99,
+            "capital_available": 80,
+            "strategy": "encapsulate",
+            "owner": "Social Services Administration",
+            "status": "on_track",
+            "annual_cost_eur": 186500,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Urban Planning Board",
+            "criticality": 66,
+            "capital_available": 80,
+            "strategy": "encapsulate",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 234507,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Cultural Grants Portal",
+            "criticality": 33,
+            "capital_available": 60,
+            "strategy": "accept",
+            "owner": "Education Administration",
+            "status": "on_track",
+            "annual_cost_eur": 14200,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Crisis Communication Hub",
+            "criticality": 99,
+            "capital_available": 90,
+            "strategy": "encapsulate",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 68900,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Social Worker Scheduler",
+            "criticality": 66,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "Social Services Administration",
+            "status": "on_track",
+            "annual_cost_eur": 95000,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Environmental Permit Tracker",
+            "criticality": 66,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 88400,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Food Inspection Register",
+            "criticality": 33,
+            "capital_available": 60,
+            "strategy": "accept",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 24500,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Visma HR Cloud",
+            "criticality": 66,
+            "capital_available": 80,
+            "strategy": "build",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 320000,
+            "lifecycle_status": "planned"
+        },
+        {
+            "name": "School Absence Tracker",
+            "criticality": 33,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "Education Administration",
+            "status": "on_track",
+            "annual_cost_eur": 18700,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Property Register",
+            "criticality": 66,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 62300,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Data Integration Layer",
+            "criticality": 99,
+            "capital_available": 90,
+            "strategy": "encapsulate",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 502865,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Citizen Analytics Dashboard",
+            "criticality": 66,
+            "capital_available": 80,
+            "strategy": "encapsulate",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 52000,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Elderly Activity Booking",
+            "criticality": 33,
+            "capital_available": 60,
+            "strategy": "accept",
+            "owner": "Social Services Administration",
+            "status": "on_track",
+            "annual_cost_eur": 16800,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "IoT Platform",
+            "criticality": 66,
+            "capital_available": 80,
+            "strategy": "encapsulate",
+            "owner": "Sundsvall Energy AB",
+            "status": "on_track",
+            "annual_cost_eur": 85000,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Safety Incident Reporter",
+            "criticality": 33,
+            "capital_available": 60,
+            "strategy": "accept",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 9400,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Tax Revenue Terminal",
+            "criticality": 99,
+            "capital_available": 70,
+            "strategy": "encapsulate",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 28900,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Citizen Feedback Platform",
+            "criticality": 33,
+            "capital_available": 60,
+            "strategy": "accept",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 12500,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Smart Parking System",
+            "criticality": 33,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 38200,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Social Media Monitor",
+            "criticality": 33,
+            "capital_available": 55,
+            "strategy": "accept",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 22000,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Outdoor Lighting Controller",
+            "criticality": 66,
+            "capital_available": 75,
+            "strategy": "encapsulate",
+            "owner": "Sundsvall Energy AB",
+            "status": "on_track",
+            "annual_cost_eur": 74000,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Funeral Services Manager",
+            "criticality": 33,
+            "capital_available": 60,
+            "strategy": "accept",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 18900,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Purchasing Compliance Checker",
+            "criticality": 66,
+            "capital_available": 80,
+            "strategy": "encapsulate",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 68500,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Parking Fine Portal",
+            "criticality": 66,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "Urban Planning Administration",
+            "status": "on_track",
+            "annual_cost_eur": 29800,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Flood Risk Monitor",
+            "criticality": 99,
+            "capital_available": 85,
+            "strategy": "encapsulate",
+            "owner": "Sundsvall Energy AB",
+            "status": "on_track",
+            "annual_cost_eur": 44700,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Digital Archive Viewer",
+            "criticality": 33,
+            "capital_available": 60,
+            "strategy": "accept",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 12400,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "Enterprise Data Catalogue",
+            "criticality": 66,
+            "capital_available": 75,
+            "strategy": "encapsulate",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 48000,
+            "lifecycle_status": "active"
+        },
+        {
+            "name": "IT Asset Register",
+            "criticality": 66,
+            "capital_available": 70,
+            "strategy": "accept",
+            "owner": "IT Shared Services",
+            "status": "on_track",
+            "annual_cost_eur": 82000,
+            "lifecycle_status": "active"
+        }
+    ]
+}

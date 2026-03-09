@@ -4,6 +4,10 @@
  */
 
 // --- Mock User Data ---
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE = isLocalhost ? 'http://localhost:3000/api' : 'api';
+const API_EXT = isLocalhost ? '' : '.json';
+
 const USERS = [
     { email: "elena.andersson@eskilstuna.se", password: "demo1234", name: "Elena Andersson", title: "Chief Digital Officer", initials: "EA", roleKey: "cdo" },
     { email: "arthur.bergstrom@eskilstuna.se", password: "demo1234", name: "Arthur Bergstr\u00f6m", title: "Operations Lead", initials: "AB", roleKey: "operations" },
@@ -157,6 +161,42 @@ function applyUserSession() {
                 const h = homePage.querySelector('.page-header'); if (h) h.innerHTML = content.header;
                 const k = homePage.querySelector('.kpi-grid'); if (k) k.innerHTML = content.kpis;
                 const w = homePage.querySelector('.widget-grid'); if (w) w.innerHTML = content.widgets;
+            }
+
+            // For CDO, attempt to fetch live KPIs
+            if (user.roleKey === 'cdo') {
+                fetch(`${API_BASE}/dashboard${API_EXT}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const homePage = document.getElementById('homePage');
+                        const kpiGrid = homePage ? homePage.querySelector('.kpi-grid') : null;
+                        if (kpiGrid && data.kpis) {
+                            // Update header to indicate live status
+                            const h = homePage.querySelector('.page-header p');
+                            if (h) h.innerHTML += ' <span style="background: #10b981; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; margin-left: 8px; font-weight: bold;">LIVE SQLITE SYNC</span>';
+
+                            let dynamicHtml = '';
+                            data.kpis.forEach(kpi => {
+                                const isTargetMet = kpi.invert_scale ? (kpi.current_value <= kpi.target_value) : (kpi.current_value >= kpi.target_value);
+                                const isCritical = Math.abs(kpi.current_value - kpi.target_value) / kpi.target_value >= 0.2;
+                                let statusClass = 'success';
+                                if (!isTargetMet) statusClass = isCritical ? 'danger' : 'warning';
+
+                                dynamicHtml += `
+                                <div class="kpi-card ${statusClass}">
+                                    <div class="kpi-label" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                        <span title="${kpi.definition}">${kpi.label}</span>
+                                        <button onclick="openSourceModal(${kpi.id})" style="background: none; border: none; font-size: 0.75rem; color: #3b82f6; text-decoration: underline; cursor: pointer; padding: 0;">See Source</button>
+                                    </div>
+                                    <div class="kpi-value">${kpi.current_value}${kpi.unit}</div>
+                                    <div class="kpi-trend">Target: ${kpi.target_value}${kpi.unit}</div>
+                                </div>
+                                `;
+                            });
+                            kpiGrid.innerHTML = dynamicHtml;
+                        }
+                    })
+                    .catch(err => console.warn("Could not fetch live KPIs, falling back to static layout", err));
             }
         }
 
@@ -496,6 +536,105 @@ function startSecurityLog(silent) {
         };
         if (silent) add(); else setTimeout(add, i * 400);
     });
+}
+
+// --- Data Explorer & Source Logic ---
+
+async function loadDataExplorer(tableName) {
+    const headerRow = document.getElementById('dataTableHeader');
+    const body = document.getElementById('dataTableBody');
+    const loader = document.getElementById('dataTableLoading');
+
+    headerRow.innerHTML = '';
+    body.innerHTML = '';
+    loader.style.display = 'block';
+
+    try {
+        const res = await fetch(`${API_BASE}/raw/${tableName}${API_EXT}`);
+        const data = await res.json();
+        loader.style.display = 'none';
+
+        if (!data || data.length === 0) {
+            body.innerHTML = `<tr><td style="padding: 2rem; text-align: center; color: var(--gray-500);">No records found in this table.</td></tr>`;
+            return;
+        }
+
+        const keys = Object.keys(data[0]);
+        let headerHtml = '<tr>';
+        keys.forEach(k => {
+            headerHtml += `<th style="padding: 0.75rem 1rem; color: var(--gray-500); font-weight: bold; text-transform: uppercase; font-size: 10px; position: sticky; top: 0; background: var(--gray-50); border-bottom: 1px solid var(--gray-200);">${k.replace(/_/g, ' ')}</th>`;
+        });
+        headerHtml += '</tr>';
+        headerRow.innerHTML = headerHtml;
+
+        let bodyHtml = '';
+        data.forEach(row => {
+            bodyHtml += '<tr style="border-bottom: 1px solid var(--gray-200);">';
+            keys.forEach(k => {
+                let val = row[k];
+                if (typeof val === 'boolean') val = val ? 'True' : 'False';
+                if (val === null) val = '';
+                bodyHtml += `<td style="padding: 0.75rem 1rem; color: var(--gray-700);">${val}</td>`;
+            });
+            bodyHtml += '</tr>';
+        });
+        body.innerHTML = bodyHtml;
+
+    } catch (e) {
+        loader.style.display = 'none';
+        body.innerHTML = `<tr><td style="padding: 2rem; text-align: center; color: #ef4444;">Error loading data. Is the backend running locally?</td></tr>`;
+        console.error(e);
+    }
+}
+
+async function openSourceModal(kpiId) {
+    const modal = document.getElementById('sourceModal');
+    if (!modal) return;
+    modal.style.display = 'flex';
+
+    document.getElementById('sourceKpiId').textContent = '#' + kpiId;
+    document.getElementById('sourceQuery').textContent = 'Loading query...';
+    document.getElementById('sourceExplanation').textContent = 'Loading explanation...';
+    document.getElementById('sourceTableHeader').innerHTML = '';
+    document.getElementById('sourceTableBody').innerHTML = '';
+
+    try {
+        const res = await fetch(`${API_BASE}/kpis/${kpiId}/source${API_EXT}`);
+        const sourceData = await res.json();
+
+        document.getElementById('sourceQuery').textContent = sourceData.query;
+        document.getElementById('sourceExplanation').textContent = sourceData.explanation;
+
+        if (sourceData.data && sourceData.data.length > 0) {
+            const keys = Object.keys(sourceData.data[0]);
+            let headerHtml = '<tr>';
+            keys.forEach(k => {
+                headerHtml += `<th style="padding: 0.75rem 1rem; font-weight: bold; text-transform: uppercase; font-size: 10px; background: #1e293b; position: sticky; top: 0; border-bottom: 1px solid #334155;">${k.replace(/_/g, ' ')}</th>`;
+            });
+            headerHtml += '</tr>';
+            document.getElementById('sourceTableHeader').innerHTML = headerHtml;
+
+            let bodyHtml = '';
+            sourceData.data.forEach(row => {
+                bodyHtml += '<tr style="border-bottom: 1px solid #334155;">';
+                keys.forEach(k => {
+                    let val = row[k];
+                    if (typeof val === 'boolean') val = val ? 'True' : 'False';
+                    if (val === null) val = '';
+                    bodyHtml += `<td style="padding: 0.75rem 1rem; color: white;">${val}</td>`;
+                });
+                bodyHtml += '</tr>';
+            });
+            document.getElementById('sourceTableBody').innerHTML = bodyHtml;
+        } else {
+            document.getElementById('sourceTableBody').innerHTML = `<tr><td style="padding: 2rem; text-align: center; color: #64748B;">No sample records available for this query.</td></tr>`;
+        }
+
+    } catch (e) {
+        document.getElementById('sourceQuery').textContent = '-- Error: Could not connect to backend --';
+        document.getElementById('sourceExplanation').textContent = 'Please make sure the backend server is running on localhost:3000.';
+        console.error(e);
+    }
 }
 
 // --- Global Lifecycle ---

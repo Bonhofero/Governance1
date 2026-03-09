@@ -198,6 +198,7 @@ body {
 }
 
 .sidebar {
+    z-index: 200;
     width: 260px;
     background: var(--navy);
     color: var(--white);
@@ -946,6 +947,7 @@ body {
 
 @media (max-width: 768px) {
     .sidebar {
+    z-index: 200;
         width: 0;
         padding: 0;
     }

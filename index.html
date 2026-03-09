@@ -66,20 +66,21 @@
                 <h2>IMS</h2>
             </div>
             <ul class="nav-menu">
-                <li class="nav-item active" data-page="home"><span class="icon">🏠</span><span>Dashboard</span></li>
-                <li class="nav-item" data-page="landscape"><span class="icon">🗺️</span><span>Digital Landscape</span>
+                <li class="nav-item active" data-page="home"><span class="icon"></span><span>Dashboard</span></li>
+                <li class="nav-item" data-page="landscape"><span class="icon"></span><span>Digital
+                        Landscape</span>
                 </li>
-                <li class="nav-item" data-page="api-library"><span class="icon">📚</span><span>API library</span></li>
-                <li class="nav-item" data-page="risk"><span class="icon">⚠️</span><span>Risk Heatmap</span></li>
-                <li class="nav-item" data-page="financial"><span class="icon">💰</span><span>Financial Overview</span>
+                <li class="nav-item" data-page="risk"><span class="icon"></span><span>Risk Heatmap</span></li>
+                <li class="nav-item" data-page="financial"><span class="icon"></span><span>Financial Overview</span>
                 </li>
-                <li class="nav-item" data-page="portfolio"><span class="icon">📋</span><span>Digital Portfolio</span>
+                <li class="nav-item" data-page="portfolio"><span class="icon"></span><span>Digital Portfolio</span>
                 </li>
-                <li class="nav-item" data-page="compliance"><span class="icon">🔒</span><span>Compliance</span></li>
-                <li class="nav-item" data-page="governance"><span class="icon">🏛️</span><span>Governance Hub</span>
+                <li class="nav-item" data-page="compliance"><span class="icon"></span><span>Compliance</span></li>
+                <li class="nav-item" data-page="governance"><span class="icon"></span><span>Governance Hub</span>
                 </li>
-                <li class="nav-item" data-page="library"><span class="icon">🔗</span><span>Shared Library</span></li>
-                <li class="nav-item" data-page="value"><span class="icon">📊</span><span>Public Value</span></li>
+                <li class="nav-item" data-page="library"><span class="icon"></span><span>Shared Library</span></li>
+                <li class="nav-item" data-page="value"><span class="icon"></span><span>Public Value</span></li>
+                <li class="nav-item" data-page="data"><span class="icon"></span><span>Data Explorer</span></li>
             </ul>
         </aside><!-- Main Content -->
         <main class="main-content"><!-- Top Bar -->
@@ -90,7 +91,7 @@
                         <option>Stockholm Stad</option>
                     </select><input type="text" class="search-bar" placeholder="Search systems, initiatives..."></div>
                 <div class="top-bar-right">
-                    <div class="notification-bell">🔔 <span class="notification-badge">3</span></div>
+                    <div class="notification-bell"> <span class="notification-badge">3</span></div>
                     <div class="user-profile">
                         <div class="user-avatar" id="userAvatar">AL</div><span class="role-badge"
                             id="userRole">Operations Lead</span><span class="role-badge" id="logoutBtn"
@@ -169,18 +170,12 @@
                 </section>
                 <!-- Digital Landscape -->
                 <section class="page-section" id="landscapePage">
-                    <div class="page-header items-center flex justify-between">
-                        <div class="flex items-center gap-8">
-                            <div>
-                                <h1 class="text-3xl font-bold text-slate-800">Digital Landscape</h1>
-                                <p class="text-slate-500 text-xs">Real-time architecture governance & API contracts</p>
-                            </div>
-                            <button id="showArchGuidance"
-                                class="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-md text-[11px] font-bold flex items-center gap-2 border border-slate-200 transition-all shadow-sm">
-                                📖 Arch. Guidance
-                            </button>
+                    <div class="page-header">
+                        <div>
+                            <h1 class="text-3xl font-bold text-slate-800">Digital Landscape</h1>
+                            <p class="text-slate-500">A comprehensive view of your municipality's digital ecosystem.</p>
                         </div>
-                        <button id="startSweepBtn" class="btn-sweep">🚀 Start Network Sweep</button>
+                        <button class="btn-sweep" id="startSweepBtn">Start Network Sweep</button>
                     </div>
 
                     <!-- Sweep Overlay (Hidden by default) -->
@@ -215,14 +210,13 @@
 
                     <!-- Main Dashboard Content (Visible after sweep or by default for now) -->
                     <div id="landscapeContainer"
-                        class="grid grid-cols-1 lg:grid-cols-3 gap-6 opacity-100 transition-opacity duration-1000 mt-6">
+                        class="grid grid-cols-1 lg:grid-cols-3 gap-6 opacity-100 transition-opacity duration-1000">
                         <!-- Topology Map (Left 2/3) -->
                         <div
                             class="lg:col-span-2 bg-slate-900 rounded-xl border border-slate-700 shadow-2xl overflow-hidden relative min-h-[600px] group">
                             <div
                                 class="absolute top-4 left-4 z-10 bg-slate-800/80 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-700">
-                                <span class="text-xs font-mono text-teal-400 uppercase tracking-tighter">Live
-                                    Topology
+                                <span class="text-xs font-mono text-teal-400 uppercase tracking-tighter">Live Topology
                                     Map</span>
                             </div>
                             <div class="absolute top-4 right-4 z-10 flex gap-2">
@@ -252,44 +246,49 @@
                                 </div>
                             </div>
                             <!-- SVG Map Container -->
-                            <div id="topologyMap"
-                                class="w-full h-full bg-[#0f172a] rounded-xl overflow-hidden shadow-inner relative group border border-slate-700/50">
-                                <!-- API Legend Overlay -->
-                                <div
-                                    class="absolute bottom-4 right-4 bg-slate-900/90 border border-slate-700 p-3 rounded-lg z-10 text-[10px] backdrop-blur-md">
-                                    <p class="text-white font-bold uppercase mb-2 tracking-widest opacity-70">API
-                                        Families</p>
-                                    <div class="space-y-2">
-                                        <div class="flex items-center gap-2">
-                                            <span class="w-3 h-0.5 bg-[#10b981]"></span>
-                                            <span class="text-emerald-400 font-bold">PUBLIC</span>
-                                            <span class="text-slate-500">Open Data Gateway</span>
-                                        </div>
-                                        <div class="flex items-center gap-2">
-                                            <span class="w-3 h-0.5 border-t border-dashed border-[#f59e0b]"></span>
-                                            <span class="text-amber-400 font-bold">PARTNER</span>
-                                            <span class="text-slate-500">Auth-based Contract</span>
-                                        </div>
-                                        <div class="flex items-center gap-2">
-                                            <span class="w-3 h-0.5 bg-[#6366f1]"></span>
-                                            <span class="text-indigo-400 font-bold">INTERNAL</span>
-                                            <span class="text-slate-500">Intra-org Exchange</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <svg id="topologySvg" viewBox="0 0 800 600"
-                                    class="w-full h-full cursor-grab active:cursor-grabbing font-mono">
+                            <div id="topologyMap" class="w-full h-full cursor-grab active:cursor-grabbing">
+                                <svg id="topologySvg" viewBox="0 0 800 600" class="w-full h-full">
                                     <!-- Dynamic content will be injected here -->
                                 </svg>
                             </div>
                             <!-- Map Controls -->
                             <div class="absolute bottom-4 left-4 flex gap-1 z-10">
                                 <button id="zoomInBtn"
-                                    class="p-2 bg-slate-800/80 hover:bg-slate-700 rounded border border-slate-700 text-slate-400 transition-colors">🔍+</button>
+                                    class="p-2 bg-slate-800/80 hover:bg-slate-700 rounded border border-slate-700 text-slate-400 transition-colors">+</button>
                                 <button id="zoomOutBtn"
-                                    class="p-2 bg-slate-800/80 hover:bg-slate-700 rounded border border-slate-700 text-slate-400 transition-colors">🔍-</button>
+                                    class="p-2 bg-slate-800/80 hover:bg-slate-700 rounded border border-slate-700 text-slate-400 transition-colors">-</button>
                                 <button id="resetZoomBtn"
                                     class="p-2 bg-slate-800/80 hover:bg-slate-700 rounded border border-slate-700 text-slate-400 transition-colors">⟲</button>
+                            </div>
+
+                            <!-- Details Side Panel -->
+                            <div id="nodeDetails"
+                                class="hidden absolute top-4 right-4 z-20 w-80 bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-xl shadow-2xl p-5 overflow-y-auto max-h-[calc(100%-2rem)] transition-all duration-300 transform translate-x-4 opacity-0">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="flex flex-col">
+                                        <h4 id="detailTitle" class="text-white font-bold text-lg leading-tight mb-1">
+                                            Section Details</h4>
+                                        <span id="detailStatus"
+                                            class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">
+                                            Status: Active
+                                        </span>
+                                    </div>
+                                    <button id="closeDetails"
+                                        class="p-1 px-2 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded border border-slate-700 transition-colors text-sm">✕</button>
+                                </div>
+
+                                <div id="detailContent" class="space-y-5">
+                                    <!-- Dynamic content will be injected here -->
+                                </div>
+
+                                <div class="mt-8 pt-4 border-t border-slate-800 flex flex-col gap-2">
+                                    <button
+                                        class="w-full py-2 bg-teal-500 hover:bg-teal-600 text-white rounded text-xs font-bold transition-colors">View
+                                        System Documentation</button>
+                                    <button
+                                        class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded text-xs transition-colors">Contact
+                                        Stack Owner</button>
+                                </div>
                             </div>
                         </div>
 
@@ -306,8 +305,7 @@
                                 </div>
                                 <div class="p-5 grid grid-cols-2 gap-4">
                                     <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
-                                        <p class="text-[10px] text-slate-500 font-bold uppercase mb-1">Total Assets
-                                        </p>
+                                        <p class="text-[10px] text-slate-500 font-bold uppercase mb-1">Total Assets</p>
                                         <p class="text-xl font-bold text-slate-800" id="statAssets">0</p>
                                     </div>
                                     <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
@@ -319,8 +317,7 @@
                                         <p class="text-xl font-bold text-slate-800" id="statSoftware">0</p>
                                     </div>
                                     <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
-                                        <p class="text-[10px] text-slate-500 font-bold uppercase mb-1">Risk Level
-                                        </p>
+                                        <p class="text-[10px] text-slate-500 font-bold uppercase mb-1">Risk Level</p>
                                         <p class="text-xl font-bold text-amber-600" id="statRisk">Low</p>
                                     </div>
                                 </div>
@@ -341,8 +338,7 @@
                                 </div>
                                 <div id="securityLog"
                                     class="flex-1 p-4 font-mono text-[11px] overflow-y-auto space-y-2 scrollbar-hide">
-                                    <div class="text-slate-500 italic text-[10px]">Waiting for scan
-                                        initialization...
+                                    <div class="text-slate-500 italic text-[10px]">Waiting for scan initialization...
                                     </div>
                                 </div>
                                 <div class="p-3 bg-slate-950/50 border-t border-slate-800">
@@ -359,48 +355,99 @@
                         </div>
                     </div>
                 </section>
-
-                <!-- API Library -->
-                <section class="page-section" id="api-libraryPage">
-                    <div class="page-header items-center">
+                <!-- Data Explorer Section -->
+                <section class="page-section" id="dataPage">
+                    <div class="page-header">
                         <div>
-                            <h1 class="text-3xl font-bold text-slate-800">API Library</h1>
-                            <p class="text-slate-500 text-sm">Centralized registry of all municipal API interfaces and
-                                consumer contracts</p>
+                            <h1 class="text-3xl font-bold text-slate-800">System Data Explorer</h1>
+                            <p class="text-slate-500">Audit-grade visibility into the IMS Data Layer.</p>
                         </div>
                     </div>
-
-                    <div class="mt-12 bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-slate-50 border-b border-slate-200">
-                                        <th
-                                            class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">
-                                            API Name & Endpoint</th>
-                                        <th
-                                            class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">
-                                            Type</th>
-                                        <th
-                                            class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">
-                                            Connected Service</th>
-                                        <th
-                                            class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">
-                                            Active Consumers (Municipalities)</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="apiTableBody" class="divide-y divide-slate-100">
-                                    <!-- Dynamic API rows will be injected here -->
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="kpi-grid" style="grid-template-columns: repeat(6, 1fr); margin-bottom: 20px;">
+                        <button class="btn-primary" onclick="loadDataExplorer('application_systems')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Applications</button>
+                        <button class="btn-primary" onclick="loadDataExplorer('business_services')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Services</button>
+                        <button class="btn-primary" onclick="loadDataExplorer('sourcing_setups')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Sourcing</button>
+                        <button class="btn-primary" onclick="loadDataExplorer('interfaces')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Interfaces</button>
+                        <button class="btn-primary" onclick="loadDataExplorer('integrations')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Integrations</button>
+                        <button class="btn-primary" onclick="loadDataExplorer('organization_units')"
+                            style="padding: 0.5rem; font-size: 0.8rem;">Orgs</button>
+                    </div>
+                    <div class="widget" style="overflow-x: auto; min-height: 400px; padding: 0;">
+                        <div id="dataTableLoading"
+                            style="display: none; padding: 4rem; text-align: center; color: var(--gray-500);">Loading
+                            dataset...</div>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left;">
+                            <thead id="dataTableHeader"
+                                style="border-bottom: 1px solid var(--gray-200); background: var(--gray-50);"></thead>
+                            <tbody id="dataTableBody">
+                                <tr>
+                                    <td style="padding: 4rem; text-align: center; color: var(--gray-500);">Select a
+                                        table above to view records.</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
-
                 <!-- Other sections will be added here -->
             </div>
         </main>
     </div>
+
+    <!-- Source Modal -->
+    <div id="sourceModal"
+        style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+        <div
+            style="background: #1e293b; padding: 2rem; border-radius: 8px; width: 80%; max-width: 800px; color: white; max-height: 90vh; overflow-y: auto; border: 1px solid #334155; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
+                <div>
+                    <h2 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 0.25rem;">KPI Source Verification
+                    </h2>
+                    <p style="font-size: 0.85rem; color: #94A3B8;">Audit trail for KPI <span id="sourceKpiId"
+                            style="font-family: monospace; padding: 2px 6px; background: #0f172a; border-radius: 4px; border: 1px solid #3b82f6; color: #3b82f6;"></span>
+                    </p>
+                </div>
+                <button onclick="document.getElementById('sourceModal').style.display='none'"
+                    style="background: none; border: none; color: #94A3B8; font-size: 1.5rem; cursor: pointer; transition: color 0.2s;"
+                    onmouseover="this.style.color='white'" onmouseout="this.style.color='#94A3B8'">&times;</button>
+            </div>
+
+            <h3
+                style="font-size: 0.75rem; font-weight: bold; color: #3b82f6; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1rem;">&#128206;</span> Calculation Logic (SQL)</h3>
+            <div
+                style="background: #0f172a; padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem; overflow-x: auto; margin-bottom: 1.5rem; color: #e2e8f0; border: 1px solid #334155;">
+                <code id="sourceQuery">Loading query...</code>
+            </div>
+
+            <h3
+                style="font-size: 0.75rem; font-weight: bold; color: #3b82f6; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-size: 1rem;">&#128240;</span> Raw Data Sample / Supporting Records</h3>
+            <div
+                style="background: #0f172a; border-radius: 4px; overflow-x: auto; border: 1px solid #334155; margin-bottom: 1.5rem; max-height: 250px;">
+                <table style="width: 100%; text-align: left; font-size: 0.8rem; border-collapse: collapse;">
+                    <thead id="sourceTableHeader"
+                        style="background: #1e293b; color: #94A3B8; border-bottom: 1px solid #334155; position: sticky; top: 0;">
+                    </thead>
+                    <tbody id="sourceTableBody" style="color: white; border-top: 1px solid #334155;"></tbody>
+                </table>
+            </div>
+
+            <div style="background: #0f172a; padding: 1rem; border-radius: 4px; border-left: 4px solid #3b82f6;">
+                <h4
+                    style="font-size: 0.75rem; font-weight: bold; color: #3b82f6; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+                    CDO Transparency Note</h4>
+                <div style="font-size: 0.9rem; color: #e2e8f0; line-height: 1.6;" id="sourceExplanation">
+                    Loading explanation...
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/app.js"></script>
 </body>
 
